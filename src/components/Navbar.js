@@ -5,6 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useCart } from './ContextRuducer';
 import Modal from '../Modal';
 import Cart from '../screens/Cart';
+import './Style.css'
 
 
 
@@ -14,17 +15,18 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
-    navigate('./login');
+    localStorage.removeItem('sellToken'); // Remove both tokens
+    navigate('/login');
   };
-const handleUser = () =>{
-  localStorage.removeItem('sellToken')
-  navigate("/")
-}
+  const handleUser = () => {
+    localStorage.removeItem('sellToken')
+    navigate("/")
+  }
   const loadCart = () => {
     setCartView(true);
   };
 
- 
+
 
   const items = useCart();
 
@@ -32,8 +34,8 @@ const handleUser = () =>{
   const sellToken = localStorage.getItem("sellToken")
 
   return (
-  
-    
+
+
     <div>
       <nav
         className="navbar navbar-expand-lg navbar-dark bg-black position-sticky"
@@ -75,57 +77,74 @@ const handleUser = () =>{
                 </Link>
               </li>
               {authToken && sellToken ? (
+
                 <div className='d-flex'>
                   <Link className="nav-link fs-5 mx-4 active" aria-current="page" to="/MyProducts">
                     My Products
                   </Link>
-                <button className='btn text-warning' onClick={handleUser}>
-                  Switch To User
-                </button>
-                 
+                  <button className='btn text-warning  fs-5 mx-4 active' onClick={handleUser}>
+                    Switch To User
+                  </button>
+                  <div>
+                    <button className="btn text-danger mt-1 fs-5" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </div>
+
+
                 </div>
+
+
+
+
+
               ) : null}
 
               {/* Display if only authToken is present */}
-          
+
               {authToken && !sellToken ? (
                 <>
-  <div className='d-flex'>
-    <Link className="nav-link fs-5 mx-4 active" aria-current="page" to="/myOrder">
-      My Orders
-    </Link>
-    <Link className='btn text-success mx-1 mt-1' to="/createseller">
-      Become a Seller
-    </Link>
-    <div className="btn text-info text-primary mt-1" onClick={loadCart}>
-      <Badge color="secondary" badgeContent={items.length}>
-        <ShoppingCartIcon />
-      </Badge>
-      Cart
-    </div>
-    
-    {cartView && (
-      <Modal onClose={() => setCartView(false)}>
-        <Cart />
-      </Modal>
-    )}
-  </div>
+                  <div className='d-flex'>
+                    <Link className="nav-link fs-5 mx-4 active" aria-current="page" to="/myOrder">
+                      My Orders
+                    </Link>
+                    <Link className='btn text-success fs-5 mx-4 active' to="/createseller">
+                      Become a Seller
+                    </Link>
+                    <div className="btn text-info text-primary mt-2" onClick={loadCart} id='cart'>
+                      <Badge color="secondary" badgeContent={items.length}>
+                        <ShoppingCartIcon />
+                      </Badge>
+                      Cart
+                    </div>
+                    <div>
+                      <button className="btn text-danger mt-1 fs-5" onClick={handleLogout}>
+                        Logout
+                      </button>
+                    </div>
 
-</>
-) : null}  
+                    {cartView && (
+                      <Modal onClose={() => setCartView(false)}>
+                        <Cart />
+                      </Modal>
+                    )}
+                  </div>
+
+                </>
+              ) : ''}
 
 
               {/* Display if neither authToken nor sellToken is present */}
               {!authToken && !sellToken ? (
                 <form className="d-flex">
-                  <Link className="btn text-success mx-1" to="/login">
+                  <Link className="btn text-success mx-3 fs-5" to="/login">
                     Login
                   </Link>
-                  <Link className="btn text-warning mx-1 " to="/creatuser">
+                  <Link className="btn text-warning mx-3  fs-5" to="/creatuser">
                     Signup
                   </Link>
                 </form>
-              ) : null}
+              ) : ''}
             </ul>
           </div>
         </div>

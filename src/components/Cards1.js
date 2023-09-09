@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+
 import { useDispatchCart, useCart } from './ContextRuducer'
 // import { Dropdown, DropdownButton } from 'react-bootstrap';
 export default function Card(props) {
   let data = useCart();
 
-  let navigate = useNavigate()
+
   const [qty, setQty] = useState(1)
   const [size, setSize] = useState("")
   const priceRef = useRef();
@@ -40,7 +40,7 @@ export default function Card(props) {
     }
     console.log(food)
     console.log(new Date())
-    if (food !== []) {
+    
       if (food.size === size) {
         await dispatch({ type: "UPDATE", id: foodItem._id, price: finalPrice, qty: qty })
         return
@@ -50,9 +50,7 @@ export default function Card(props) {
         console.log("Size different so simply ADD one more to the list")
         return
       }
-      return
-    }
-
+  
     await dispatch({ type: "ADD", id: foodItem._id, name: foodItem.name, price: finalPrice, qty: qty, size: size })
 
 
@@ -74,7 +72,7 @@ export default function Card(props) {
   return (
         <div>
 
-          <div className="card mt-3" style={{ width: "16rem", maxHeight: "360px" }}>
+          <div className="card mt-3" style={{ width: "16rem", maxHeight: "400px" }}>
             <img src={props.ImgSrc} className="card-img-top" alt="..." style={{ height: "120px", objectFit: "fill" }} />
             <div className="card-body">
               <h5 className="card-title">{props.foodName}</h5>
@@ -91,7 +89,7 @@ export default function Card(props) {
                     return <option key={i} value={i}>{i}</option>
                   })}
                 </select>
-                <div className=' d-inline ms-2 h-100 w-20 fs-5 text-success'>
+                <div className=' d-inline ms-2 h-100 w-20 fs-6 text-success'>
                   Rs:{finalPrice}/-
                 </div>
               </div>

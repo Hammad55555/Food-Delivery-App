@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const mongoURI = "mongodb+srv://QuickBites:123@cluster0.j3bnfkm.mongodb.net/QuickBites";
+const mongoURI = 'mongodb+srv://princekk5555:Ham01mad3524@cluster0.tw9sf5p.mongodb.net/gofood?retryWrites=true&w=majority';
 
 let cachedData = {
   food_items: [],

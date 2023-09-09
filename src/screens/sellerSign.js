@@ -10,6 +10,7 @@ const SellerSign = () => {
     vendorpassword: "",
     vendoraddress: "",
   });
+  let navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,6 +35,7 @@ const SellerSign = () => {
       if (json.success) {
         console.log("success true")
         localStorage.setItem("sellToken", json.sellToken); 
+        navigate("/")
        
       } else {
         alert("Enter Valid Credentials");
@@ -116,7 +118,7 @@ const SellerSign = () => {
               />
             </div>
             <button type="submit" className="btn btn-primary">
-              Sign in
+              Login
             </button>
           </form>
         </div>

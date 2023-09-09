@@ -3,21 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 function MenuForm({ onSubmit }) {
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   const [CategoryName, setCategoryName] = useState('');
   const [name, setItemName] = useState('');
   const [img, setItemImg] = useState('');
-  const [options, Setoptions] = useState({
-    small: '',
-    medium: '',
-    large: '',
-    half: '',
-    full: '',
-  });
+  const [options, Setoptions] = useState('');
   const [description, setItemDescription] = useState('');
   const [products, setProducts] = useState([]);
-  const [backgroundImage, setBackgroundImage] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newItem = {
@@ -40,6 +34,9 @@ function MenuForm({ onSubmit }) {
 
     console.log(response);
     if (response.ok) {
+      alert('Product Add Successfully!');
+      navigate('/');
+      
       setProducts([...products, newItem]);
       const updatedDataResponse = await fetch('http://localhost:5000/api/sam');
       const updatedData = await updatedDataResponse.json();
@@ -52,13 +49,7 @@ function MenuForm({ onSubmit }) {
     setCategoryName('');
     setItemName('');
     setItemImg('');
-    Setoptions({
-      small: '',
-      medium: '',
-      large: '',
-      half: '',
-      full: '',
-    });
+    Setoptions('');
     setItemDescription('');
   };
 
@@ -73,13 +64,13 @@ function MenuForm({ onSubmit }) {
     if (CategoryName === 'Pizza') {
       return (
         <>
-          <label htmlFor="small">Small Price:</label>
+          <label htmlFor="regular">regular Price:</label>
           <input
             type="text"
-            id="small"
+            id="regular"
             className="form-control"
-            value={options.small}
-            onChange={(e) => handleOptionChange('small', e.target.value)}
+            value={options.regular}
+            onChange={(e) => handleOptionChange('regular', e.target.value)}
             required
           />
 
@@ -104,7 +95,7 @@ function MenuForm({ onSubmit }) {
           />
         </>
       );
-    } else if (CategoryName === 'Biryani/Rice' || CategoryName === 'Starter') {
+    } else if (CategoryName === 'Biryani/Rice' || CategoryName === 'Fast Food') {
       return (
         <>
           <label htmlFor="half">Half Price:</label>
@@ -151,7 +142,7 @@ function MenuForm({ onSubmit }) {
               <option value="">Select Category</option>
               <option value="Biryani/Rice">Biryani/Rice</option>
               <option value="Pizza">Pizza</option>
-              <option value="Starter">Starter</option>
+              <option value="Fast Food">Fast Food</option>
             </select>
           </div>
 

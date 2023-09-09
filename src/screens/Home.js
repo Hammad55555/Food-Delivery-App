@@ -60,7 +60,7 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className='container'>
+      <div className='container mt-5'>
         {foodCat.map((category) => (
           <div key={category._id}>
             <h2>{category.CategoryName}</h2>

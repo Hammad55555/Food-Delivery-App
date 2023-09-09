@@ -31,6 +31,7 @@ const Signup = () => {
       alert("Enter Valid Credentials");
     }
     if(json.success){
+      alert('User Create Successfully!')
      navigate("/login")
     }
   };

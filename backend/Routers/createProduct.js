@@ -29,7 +29,7 @@ router.post("/sam", async (req, res) => {
 router.post('/displayData', async (req, res) => {
   try {
     const cachedData = getCachedData();
-    console.log('Cached Data:', cachedData);
+   
     res.send([cachedData.food_items, cachedData.food_category]);
   } catch (error) {
     console.log(error.message);

@@ -7,15 +7,19 @@ export default function Cart() {
   let dispatch = useDispatchCart();
   let navigate = useNavigate();
   if (data.length === 0) {
+    navigate("/");
     return (
+       
       <div>
-        <div className='m-5 w-100 text-center fs-3'>The Cart is Empty!</div>
+         
+        <div className='m-5 w-100 text-center fs-3'>Thankyou For Your Order!</div>
+       
       </div>
     )
 }
 const handleCheckOut = async () => {
-  alert("Thanks For Your Order")
-  navigate("/")
+  
+  navigate("/");
   let userEmail = localStorage.getItem("userEmail");
   // console.log(data,localStorage.getItem("userEmail"),new Date())
   const response = await fetch("http://localhost:5000/api/orderData", {

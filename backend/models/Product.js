@@ -16,17 +16,9 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
-    options: {
-        type: [{
-          half: String,
-          full: String, 
-          regular:String,
-          medium: String,
-          large:String,
-          
-        }] 
-      }
-    ,
+    options: [{
+        
+    }],
 
     description: {
         type: String,
