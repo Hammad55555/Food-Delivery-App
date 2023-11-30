@@ -184,7 +184,7 @@ function MenuForm({ onSubmit }) {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary text-center">
             Add Item
           </button>
         </form>

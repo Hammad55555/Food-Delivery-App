@@ -2,3 +2,10 @@
    
     margin-left: 550px;
 }
+#login{
+    display: flex;
+    margin: auto;
+    margin-left: 860px;
+    color: black;
+
+}

@@ -29,7 +29,12 @@ export default function Card(props) {
   const handleOptions = (e) => {
     setSize(e.target.value);
   }
+  const authToken = localStorage.getItem('authToken');
   const handleAddToCart = async () => {
+    if (!authToken) {
+      alert("Please login to add items in the Cart");
+      return;
+    }
     let food = []
     for (const item of data) {
       if (item.id === foodItem._id) {

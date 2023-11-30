@@ -86,7 +86,7 @@ export default function Navbar() {
                     Switch To User
                   </button>
                   <div>
-                    <button className="btn text-danger mt-1 fs-5" onClick={handleLogout}>
+                    <button className="btn text-danger mx-3 fs-4" onClick={handleLogout}>
                       Logout
                     </button>
                   </div>
@@ -136,7 +136,7 @@ export default function Navbar() {
 
               {/* Display if neither authToken nor sellToken is present */}
               {!authToken && !sellToken ? (
-                <form className="d-flex">
+                <form className="d-flex" id='login'>
                   <Link className="btn text-success mx-3 fs-5" to="/login">
                     Login
                   </Link>
